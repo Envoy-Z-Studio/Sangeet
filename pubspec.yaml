@@ -26,7 +26,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_archive: ^6.0.3
-  flutter_displaymode: ^0.6.0
   flutter_localizations:
     sdk: flutter
   flutter_lyric: ^2.0.4+6

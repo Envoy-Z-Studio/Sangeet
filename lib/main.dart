@@ -4,13 +4,13 @@ import 'dart:io';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logging/logging.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:sangeet/Helpers/config.dart';
 import 'package:sangeet/Helpers/countrycodes.dart';
@@ -40,45 +40,31 @@ Future<void> main() async {
   } else {
     await Hive.initFlutter();
   }
+
   await openHiveBox('settings');
   await openHiveBox('downloads');
   await openHiveBox('stats');
   await openHiveBox('Favorite Songs');
   await openHiveBox('cache', limit: true);
   await openHiveBox('ytlinkcache', limit: true);
+
   if (Platform.isAndroid) {
-    setOptimalDisplayMode();
+    _requestStoragePermissions();
   }
   await startService();
   runApp(MyApp());
 }
 
-Future<void> setOptimalDisplayMode() async {
-  await FlutterDisplayMode.setHighRefreshRate();
-  final List<DisplayMode> supported = //changed by suman
-      await FlutterDisplayMode.supported; //changed by suman
-  final DisplayMode active = await FlutterDisplayMode.active; //changed by suman
-
-  final List<DisplayMode> sameResolution = supported //changed by suman
-      .where(
-        //changed by suman
-        (DisplayMode m) =>
-            m.width == active.width &&
-            m.height == active.height, //changed by suman
-      ) //changed by suman
-      .toList() //changed by suman
-    ..sort(
-      //changed by suman
-      (DisplayMode a, DisplayMode b) =>
-          b.refreshRate.compareTo(a.refreshRate), //changed by suman
-    ); //changed by suman
-
-  final DisplayMode mostOptimalMode = //changed by suman
-      sameResolution.isNotEmpty
-          ? sameResolution.first
-          : active; //changed by suman
-
-  await FlutterDisplayMode.setPreferredMode(mostOptimalMode); //changed by suman
+/// Requests media permissions for Android.
+/// On Android 13+ (API 33), requests specific access.
+Future<void> _requestStoragePermissions() async {
+  final statuses = await [Permission.audio].request();
+  final bool allGranted = statuses.values.every((status) => status.isGranted);
+  if (allGranted) {
+    Logger.root.info('Permissions granted.');
+  } else {
+    Logger.root.warning('Permissions not granted.');
+  }
 }
 
 Future<void> startService() async {
