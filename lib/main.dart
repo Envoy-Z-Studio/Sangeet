@@ -58,7 +58,12 @@ Future<void> main() async {
 /// Requests media permissions for Android.
 /// On Android 13+ (API 33), requests specific access.
 Future<void> _requestStoragePermissions() async {
-  final statuses = await [Permission.audio].request();
+  final statuses = await [
+    Permission.audio,
+    Permission.notification,
+    Permission.ignoreBatteryOptimizations,
+    Permission.manageExternalStorage,
+  ].request();
   final bool allGranted = statuses.values.every((status) => status.isGranted);
   if (allGranted) {
     Logger.root.info('Permissions granted.');
