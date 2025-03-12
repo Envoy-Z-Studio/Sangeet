@@ -2,43 +2,43 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform, kIsWeb;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
+/// Firebase configuration handler for different platforms
+class FirebaseConfig {
+  final FirebaseOptions options;
 
-// await Firebase.initializeApp(
-//   options: DefaultFirebaseOptions.currentPlatform,
-// );
+  FirebaseConfig._(this.options);
 
-class DefaultFirebaseOptions {
-  static FirebaseOptions get currentPlatform {
+  factory FirebaseConfig.forCurrentPlatform() {
     if (kIsWeb) {
       throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
+        'FirebaseOptions have not been configured for web - '
+        'please reconfigure using the FlutterFire CLI.',
       );
     }
+
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        return android;
+        return FirebaseConfig._(android);
       case TargetPlatform.iOS:
-        return ios;
+        return FirebaseConfig._(ios);
       case TargetPlatform.macOS:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'FirebaseOptions have not been configured for macOS - '
+          'please reconfigure using the FlutterFire CLI.',
         );
       case TargetPlatform.windows:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'FirebaseOptions have not been configured for Windows - '
+          'please reconfigure using the FlutterFire CLI.',
         );
       case TargetPlatform.linux:
         throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+          'FirebaseOptions have not been configured for Linux - '
+          'please reconfigure using the FlutterFire CLI.',
         );
       default:
         throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
+          'FirebaseOptions are not supported for this platform.',
         );
     }
   }
