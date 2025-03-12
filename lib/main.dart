@@ -30,7 +30,7 @@ import 'package:sangeet/Screens/Login/pref.dart';
 import 'package:sangeet/Screens/Player/audioplayer.dart';
 import 'package:sangeet/Screens/Settings/setting.dart';
 import 'package:sangeet/Services/audio_service.dart';
-import 'package:sangeet/theme/app_theme.dart';
+import 'package:sangeet/Theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
