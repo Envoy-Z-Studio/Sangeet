@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sangeet/Helpers/config.dart';
 
@@ -11,6 +12,7 @@ class AppTheme {
     required BuildContext context,
   }) {
     return ThemeData(
+      useMaterial3: false,
       textSelectionTheme: TextSelectionThemeData(
         selectionHandleColor: currentTheme.currentColor(),
         cursorColor: currentTheme.currentColor(),
@@ -30,6 +32,8 @@ class AppTheme {
       visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: AppBarTheme(
         backgroundColor: currentTheme.currentColor(),
+        foregroundColor: Colors.black,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       cardTheme: CardTheme(
         clipBehavior: Clip.antiAlias,
@@ -60,6 +64,7 @@ class AppTheme {
     required BuildContext context,
   }) {
     return ThemeData(
+      useMaterial3: false,
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: Colors.white,
@@ -88,6 +93,7 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         color: currentTheme.getCanvasColor(),
         foregroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
       ),
       canvasColor: currentTheme.getCanvasColor(),
       cardColor: currentTheme.getCardColor(),
