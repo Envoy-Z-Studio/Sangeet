@@ -62,14 +62,21 @@ class FormatResponse {
     // }
     try {
       final List artistNames = [];
-      if (response['more_info']?['artistMap']?['primary_artists'] == null ||
+      if (response['more_info']?['artistMap'] == false ||
+          response['more_info']?['artistMap']?['primary_artists'] == null ||
           response['more_info']?['artistMap']?['primary_artists'].length == 0) {
-        if (response['more_info']?['artistMap']?['featured_artists'] == null ||
-            response['more_info']?['artistMap']?['featured_artists'].length ==
+        if (response['more_info']?['artistMap'] == false ||
+            response['more_info']?['artistMap']?['featured_artists'] == null ||
+            response['more_info']?['artistMap']?['featured_artists']?.length ==
                 0) {
-          if (response['more_info']?['artistMap']?['artists'] == null ||
-              response['more_info']?['artistMap']?['artists'].length == 0) {
-            artistNames.add('Unknown');
+          if (response['more_info']?['artistMap'] == false ||
+              response['more_info']?['artistMap']?['artists'] == null ||
+              response['more_info']?['artistMap']?['artists']?.length == 0) {
+            if (response['more_info']?['music'] != null) {
+              artistNames.add(response['more_info']['music']);
+            } else {
+              artistNames.add('Unknown');
+            }
           } else {
             try {
               response['more_info']['artistMap']['artists'][0]['id']
@@ -183,7 +190,7 @@ class FormatResponse {
             : response['more_info']['music'],
         'image': getImageUrl(response['image'].toString()),
         'perma_url': response['perma_url'],
-        'url': decode(response['encrypted_media_url'].toString())
+        'url': decode(response['encrypted_media_url'].toString()),
       };
     } catch (e) {
       Logger.root.severe('Error inside FormatSingleAlbumSongResponse: $e');
@@ -242,7 +249,7 @@ class FormatResponse {
             : response['description'].toString().unescape(),
         'title': response['title'].toString().unescape(),
         'artist': response['music'] == null
-            ? (response['more_info']?['music']) == null
+            ? (response['more_info']?['music'] == null)
                 ? (response['more_info']?['artistMap']?['primary_artists'] ==
                             null ||
                         (response['more_info']?['artistMap']?['primary_artists']
@@ -500,7 +507,7 @@ class FormatResponse {
         'radio',
         'city_mod',
         'artist_recos',
-        ...promoList
+        ...promoList,
       ];
       data['collections_temp'] = promoListTemp;
     } catch (e) {

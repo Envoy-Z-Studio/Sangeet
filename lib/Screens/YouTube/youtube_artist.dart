@@ -270,7 +270,7 @@ class _YouTubeArtistState extends State<YouTubeArtist> {
                           ),
                         ),
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

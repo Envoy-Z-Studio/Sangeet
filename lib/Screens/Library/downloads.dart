@@ -99,7 +99,7 @@ class _DownloadsState extends State<Downloads>
               .addEntries([MapEntry(element['album'].toString(), tempAlbum)]);
         } else {
           _albums.addEntries([
-            MapEntry(element['album'].toString(), [element as Map])
+            MapEntry(element['album'].toString(), [element as Map]),
           ]);
         }
 
@@ -110,7 +110,7 @@ class _DownloadsState extends State<Downloads>
               .addEntries([MapEntry(element['artist'].toString(), tempArtist)]);
         } else {
           _artists.addEntries([
-            MapEntry(element['artist'].toString(), [element])
+            MapEntry(element['artist'].toString(), [element]),
           ]);
         }
 
@@ -121,7 +121,7 @@ class _DownloadsState extends State<Downloads>
               .addEntries([MapEntry(element['genre'].toString(), tempGenre)]);
         } else {
           _genres.addEntries([
-            MapEntry(element['genre'].toString(), [element])
+            MapEntry(element['genre'].toString(), [element]),
           ]);
         }
       } catch (e) {

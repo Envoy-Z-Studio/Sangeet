@@ -710,7 +710,7 @@ class _HomePageState extends State<HomePage> {
                                                         blurRadius: 5.0,
                                                         offset:
                                                             Offset(1.5, 1.5),
-                                                      )
+                                                      ),
                                                     ],
                                                   ),
                                                   child: Row(
@@ -806,7 +806,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      MiniPlayer()
+                      MiniPlayer(),
                     ],
                   ),
                 ),

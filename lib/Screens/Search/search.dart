@@ -1,6 +1,5 @@
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SearchBar;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:sangeet/APIs/api.dart';
@@ -642,7 +641,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     if (key == 'Songs') {
                                                       PlayerInvoke.init(
                                                         songsList: [
-                                                          value[index]
+                                                          value[index],
                                                         ],
                                                         index: 0,
                                                         isOffline: false,
@@ -714,7 +713,7 @@ class _SearchPageState extends State<SearchPage> {
   // ignore: avoid_void_async
   void _listen() async {
     if (!_isListening) {
-      bool available = await _speech.initialize();
+      final bool available = await _speech.initialize();
       if (available) {
         setState(() => _isListening = true);
         _speech.listen(

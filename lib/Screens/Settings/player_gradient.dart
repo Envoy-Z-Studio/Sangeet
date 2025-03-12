@@ -19,7 +19,7 @@ class _PlayerGradientSelectionState extends State<PlayerGradientSelection> {
     'halfDark',
     'fullLight',
     'fullDark',
-    'fullMix'
+    'fullMix',
   ];
   final List<Color?> gradientColor = [Colors.lightBlue, Colors.blue];
   final MyTheme currentTheme = GetIt.I<MyTheme>();
@@ -104,7 +104,7 @@ class _PlayerGradientSelectionState extends State<PlayerGradientSelection> {
                                             if (type == 'fullMix')
                                               gradientColor[1] ?? Colors.black
                                             else
-                                              Colors.black
+                                              Colors.black,
                                           ]
                                         : [
                                             gradientColor[0] ??

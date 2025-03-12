@@ -8,8 +8,8 @@ class MyTheme with ChangeNotifier {
   bool _useSystemTheme =
       Hive.box('settings').get('useSystemTheme', defaultValue: false) as bool;
 
-  String accentColor =
-      Hive.box('settings').get('themeColor', defaultValue: 'Light Blue') as String;
+  String accentColor = Hive.box('settings')
+      .get('themeColor', defaultValue: 'Light Blue') as String;
   String canvasColor =
       Hive.box('settings').get('canvasColor', defaultValue: 'Grey') as String;
   String cardColor =
@@ -316,7 +316,7 @@ class MyTheme with ChangeNotifier {
         'cardGrad': cardGrad,
         'bottomGrad': bottomGrad,
         'colorHue': colorHue,
-      }
+      },
     });
   }
 

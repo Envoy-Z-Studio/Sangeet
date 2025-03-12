@@ -108,8 +108,7 @@ class BouncyImageSliverScrollView extends StatelessWidget {
               pinned: true,
               centerTitle: true,
               // floating: true,
-              backgroundColor:
-                  _opacity.value < 0.6 ? Colors.amber[200] : null,
+              backgroundColor: _opacity.value < 0.6 ? Colors.amber[200] : null,
               expandedHeight: expandedHeight,
               actions: actions,
               flexibleSpace: FlexibleSpaceBar(

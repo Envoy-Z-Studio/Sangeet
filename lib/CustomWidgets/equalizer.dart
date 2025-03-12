@@ -78,30 +78,34 @@ class _EqualizerControlsState extends State<EqualizerControls> {
         }
         final data = snapshot.data;
         if (data == null) return const SizedBox();
-        return Row(
-          children: [
-            for (final band in data['bands'])
-              Expanded(
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: VerticalSlider(
-                        min: data['minDecibels'] as double,
-                        max: data['maxDecibels'] as double,
-                        value: band['gain'] as double,
-                        bandIndex: band['index'] as int,
-                        audioHandler: widget.audioHandler,
+        if (data['bands'] is List) {
+          return Row(
+            children: [
+              for (final band in data['bands'] as List)
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: VerticalSlider(
+                          min: data['minDecibels'] as double,
+                          max: data['maxDecibels'] as double,
+                          value: band['gain'] as double,
+                          bandIndex: band['index'] as int,
+                          audioHandler: widget.audioHandler,
+                        ),
                       ),
-                    ),
-                    Text(
-                      '${band['centerFrequency'].round()}\nHz',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                      Text(
+                        '${band['centerFrequency'].round()}\nHz',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-          ],
-        );
+            ],
+          );
+        } else {
+          return const Text('Invalid equalizer data');
+        }
       },
     );
   }

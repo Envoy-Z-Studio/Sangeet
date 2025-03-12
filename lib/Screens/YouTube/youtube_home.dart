@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide SearchBar;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive/hive.dart';
 import 'package:sangeet/CustomWidgets/on_hover.dart';
@@ -363,7 +363,7 @@ class _YouTubeState extends State<YouTube>
                                                                     .playlist_play_rounded,
                                                                 size: 40,
                                                               ),
-                                                            )
+                                                            ),
                                                           ],
                                                         ),
                                                       ),
@@ -401,7 +401,7 @@ class _YouTubeState extends State<YouTube>
                                                   ),
                                                   const SizedBox(
                                                     height: 5.0,
-                                                  )
+                                                  ),
                                                 ],
                                               ),
                                             ),

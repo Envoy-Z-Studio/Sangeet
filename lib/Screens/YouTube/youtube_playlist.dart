@@ -352,7 +352,7 @@ class _YouTubePlaylistState extends State<YouTubePlaylist> {
                           ),
                         ),
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

@@ -104,8 +104,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                           .colorScheme
                                           .secondary,
                                     ),
-                                    children: <TextSpan>[
-                                      const TextSpan(
+                                    children: const <TextSpan>[
+                                      TextSpan(
                                         text: 'Music',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                         color: Colors.black26,
                                         blurRadius: 5.0,
                                         offset: Offset(0.0, 3.0),
-                                      )
+                                      ),
                                     ],
                                   ),
                                   child: TextField(
@@ -217,7 +217,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                           color: Colors.black26,
                                           blurRadius: 5.0,
                                           offset: Offset(0.0, 3.0),
-                                        )
+                                        ),
                                       ],
                                     ),
                                     child: Center(

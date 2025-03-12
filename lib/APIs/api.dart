@@ -563,7 +563,7 @@ class SaavnAPI {
       final getMain = json.decode(res.body);
       final List responseList = getMain['results'] as List;
       return [
-        await FormatResponse.formatSingleSongResponse(responseList[0] as Map)
+        await FormatResponse.formatSingleSongResponse(responseList[0] as Map),
       ];
     }
     return List.empty();
