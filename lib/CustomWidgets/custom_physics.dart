@@ -39,13 +39,12 @@ class PagingScrollPhysics extends ScrollPhysics {
 
   double _getTargetPixels(
     ScrollMetrics position,
-    Tolerance tolerance,
     double velocity,
   ) {
     double page = _getPage(position);
-    if (velocity < -tolerance.velocity) {
+    if (velocity < -toleranceFor(position).velocity) {
       page -= 0.5;
-    } else if (velocity > tolerance.velocity) {
+    } else if (velocity > toleranceFor(position).velocity) {
       page += 0.5;
     }
     return _getPixels(page.roundToDouble());
@@ -60,15 +59,14 @@ class PagingScrollPhysics extends ScrollPhysics {
         (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
       return super.createBallisticSimulation(position, velocity);
     }
-    final Tolerance tolerance = this.tolerance;
-    final double target = _getTargetPixels(position, tolerance, velocity);
+    final double target = _getTargetPixels(position, velocity);
     if (target != position.pixels) {
       return ScrollSpringSimulation(
         spring,
         position.pixels,
         target,
         velocity,
-        tolerance: tolerance,
+        tolerance: toleranceFor(position),
       );
     }
     return null;
