@@ -29,7 +29,7 @@ internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManage
     // val intent = Intent(Intent.ACTION_VIEW)
     // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
-    val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+    val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.button_play_pause, pendingIntent)
 
     // Instruct the widget manager to update the widget
